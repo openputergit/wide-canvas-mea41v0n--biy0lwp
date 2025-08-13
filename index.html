@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Countdown</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .dancing-script { font-family: 'Dancing Script', cursive; }
+        .poppins { font-family: 'Poppins', sans-serif; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-pink-100 min-h-screen poppins">
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center">
+            <h1 class="dancing-script text-5xl md:text-7xl text-pink-600 mb-8">Happy Birthday My Love!</h1>
+            <div class="floating mb-8">
+                <i class="bi bi-cake2 text-6xl md:text-8xl text-pink-500"></i>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-xl p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Countdown to Your Special Day</h2>
+                <div id="countdown" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-pink-100 rounded-lg p-4">
+                        <span id="days" class="block text-4xl font-bold text-pink-600">--</span>
+                        <span class="text-gray-600">Days</span>
+                    </div>
+                    <div class="bg-pink-100 rounded-lg p-4">
+                        <span id="hours" class="block text-4xl font-bold text-pink-600">--</span>
+                        <span class="text-gray-600">Hours</span>
+                    </div>
+                    <div class="bg-pink-100 rounded-lg p-4">
+                        <span id="minutes" class="block text-4xl font-bold text-pink-600">--</span>
+                        <span class="text-gray-600">Minutes</span>
+                    </div>
+                    <div class="bg-pink-100 rounded-lg p-4">
+                        <span id="seconds" class="block text-4xl font-bold text-pink-600">--</span>
+                        <span class="text-gray-600">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <i class="bi bi-heart-fill text-4xl text-red-500 mb-4"></i>
+                    <p class="text-gray-700 italic">"In all the world there is no heart for me like yours. In all the world there is no love for you like mine."</p>
+                    <p class="text-gray-500 mt-2">- aaryan </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <i class="bi bi-stars text-4xl text-yellow-500 mb-4"></i>
+                    <p class="text-gray-700 italic">"Every year on your birthday, you get a chance to start new."</p>
+                    <p class="text-gray-500 mt-2">- Bae</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const birthday = new Date('August 14, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = birthday - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = textDay;
+            document.getElementById('hours').innerText = textHour;
+            document.getElementById('minutes').innerText = textMinute;
+            document.getElementById('seconds').innerText = textSecond;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+<script>document.body.addEventListener('wheel', e => { if (!e.ctrlKey) return; e.preventDefault(); return }, { passive: false })</script>
+	</body>
+</html>
